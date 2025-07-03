@@ -27,18 +27,9 @@
         .slider-track {
             background: #e5e7eb;
         }
-        .slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 24px;
-            height: 24px;
-            background: #0d2f66;
-            cursor: pointer;
-            border-radius: 50%;
-            border: 4px solid #fcd34d;
-        }
         input[type='range']::-webkit-slider-thumb {
             -webkit-appearance: none;
+            appearance: none;
             width: 24px;
             height: 24px;
             background: #0d2f66;
@@ -55,6 +46,13 @@
             border-radius: 50%;
             border: 4px solid #fcd34d;
         }
+        @keyframes pulse-light {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(252, 211, 77, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(252, 211, 77, 0); }
+        }
+        .promo-box-animated {
+            animation: pulse-light 2.5s infinite;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -63,6 +61,7 @@
 
         <!-- Hero Section -->
         <header class="hero text-white text-center py-16 px-6">
+            <img src="https://postfiles.pstatic.net/MjAyMzAyMTFfMjcg/MDAxNjc2MDg5Mjk3MjMx.YsHwiiovGxU4iV1GCBi2M2SSHj8xHjhv0WYELo7ANAAg.u86XQojqOIIKlvt13WfarMM0cFQCoei-iUkT1OegkOog.PNG.heroluv/SE-985f646b-fdf3-462f-8e7e-dbac26d8b347.png?type=w966" alt="Dealver Logo" class="mx-auto mb-8 w-full max-w-lg md:max-w-xl">
             <h1 class="text-4xl md:text-5xl font-black mb-4">
                 김해 <span class="text-yellow-400">딜버(Dealver)</span> 라이더 모집
             </h1>
@@ -109,7 +108,8 @@
             <!-- Interactive Income Calculator Section -->
             <section class="bg-blue-50 p-6 md:p-10 rounded-xl mb-16">
                 <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">나의 예상 수입은?</h2>
-                <p class="text-center text-gray-600 mb-10">슬라이드를 조절하여 예상 월 수입을 확인해보세요!</p>
+                <p class="text-center text-gray-600 mb-2">슬라이드를 조절하여 예상 월 수입을 확인해보세요!</p>
+                <p class="text-center text-sm text-gray-500 mb-10">( 상황에 따라 수입은 상이 할 수 있습니다. )</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <!-- Controls -->
@@ -141,14 +141,23 @@
             </section>
 
             <!-- Promotion Section -->
-            <section class="text-center mb-16">
+            <section class="text-center mb-16 px-4">
                  <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">친구와 함께, 혜택도 함께!</h2>
-                 <p class="text-center text-gray-600 mb-6">지금 지인을 소개하고 특별 보너스를 받으세요.</p>
-                <div class="max-w-md mx-auto bg-yellow-100 border-2 border-yellow-300 rounded-lg p-6">
-                    <p class="text-xl font-bold text-yellow-900">전업기사 소개 시 <span class="text-2xl">10만원</span></p>
-                    <p class="my-2 text-gray-700 font-bold text-2xl">+</p>
-                    <p class="text-xl font-bold text-yellow-900">부업기사 소개 시 <span class="text-2xl">5만원</span></p>
-                    <p class="text-sm text-gray-600 mt-4">(내부 규정 충족 시 지급)</p>
+                 <p class="text-center text-gray-600 mb-8">지금 지인을 소개하고 특별 보너스를 받으세요.</p>
+                <div class="max-w-2xl mx-auto bg-yellow-100 border-2 border-yellow-300 rounded-lg p-6 shadow-lg relative overflow-hidden promo-box-animated">
+                    <div class="absolute -top-10 -right-10 bg-yellow-400 text-yellow-900 font-bold uppercase tracking-wider px-10 py-2 transform rotate-45 text-sm">Event</div>
+                    <div class="flex flex-col md:flex-row justify-center items-center text-center gap-4 md:gap-8">
+                        <div class="p-4">
+                            <p class="text-lg font-bold text-yellow-900">전업기사 소개 시</p>
+                            <p class="text-4xl font-black text-red-600">10만원</p>
+                        </div>
+                        <div class="w-24 h-px bg-yellow-300 md:w-px md:h-16"></div>
+                        <div class="p-4">
+                            <p class="text-lg font-bold text-yellow-900">부업기사 소개 시</p>
+                            <p class="text-4xl font-black text-red-600">5만원</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">(내부 규정 충족 시 지급)</p>
                 </div>
             </section>
         </main>
