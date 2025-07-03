@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>딜버 라이더 모집 - 당신의 수입을 직접 계산해보세요!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Professional Blue & Gold -->
+    <!-- Application Structure Plan: A single-page, top-to-bottom narrative flow designed to convert potential riders. The structure starts with a strong value proposition (Hero), details the key benefits (Features), engages the user with an interactive income simulator (Calculator & Chart), highlights a key incentive (Promotion), and finishes with a clear call to action (CTA). This structure was chosen to guide the user from interest to engagement to conversion logically, with the interactive calculator acting as the central engagement point to make the abstract concept of 'income' tangible and compelling. -->
+    <!-- Visualization & Content Choices: The core interactive element is the income simulator. Report Info: Rider benefits and income potential. -> Goal: Engage and inform potential earnings. -> Viz/Presentation Method: HTML range sliders for input and a Chart.js bar chart for dynamic output. -> Interaction: Users drag sliders for 'hours per day' and 'days per week'; the chart and text update in real-time to show estimated income. -> Justification: This transforms a passive landing page into an active tool, directly addressing the primary motivation of applicants (income) and increasing engagement. -> Library/Method: Chart.js for its simplicity and excellent mobile responsiveness. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .hero {
+            background: linear-gradient(rgba(13, 47, 102, 0.8), rgba(13, 47, 102, 0.8)), url('https://images.unsplash.com/photo-1576184833294-7a3a522a8704?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.07);
+        }
+        .slider-track {
+            background: #e5e7eb;
+        }
+        .slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #0d2f66;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #fcd34d;
+        }
+        input[type='range']::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #0d2f66;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #fcd34d;
+            margin-top: -8px; 
+        }
+        input[type='range']::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: #0d2f66;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #fcd34d;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="container mx-auto max-w-4xl bg-white shadow-lg">
+
+        <!-- Hero Section -->
+        <header class="hero text-white text-center py-16 px-6">
+            <h1 class="text-4xl md:text-5xl font-black mb-4">
+                김해 <span class="text-yellow-400">딜버(Dealver)</span> 라이더 모집
+            </h1>
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto">
+                자유로운 근무 환경과 안정적인 수입, 업계 최고의 대우를 약속합니다.
+            </p>
+        </header>
+
+        <main class="px-6 py-12 md:px-10 md:py-16">
+
+            <!-- Features Section -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">딜버가 특별한 이유</h2>
+                <p class="text-center text-gray-600 mb-10">최고의 환경에서 오직 배달에만 집중하세요.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature Items -->
+                    <div class="feature-card bg-gray-100 p-6 rounded-lg shadow-sm transition-all duration-300">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">🧠 AI 추천 배차</h3>
+                        <p class="text-gray-700">AI가 최적의 동선을 분석하여 대기 시간 없이 꾸준한 콜을 배차합니다.</p>
+                    </div>
+                    <div class="feature-card bg-gray-100 p-6 rounded-lg shadow-sm transition-all duration-300">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">💰 업계 최저 수수료</h3>
+                        <p class="text-gray-700">라이더님의 순수익을 최우선으로, 업계 최저 수준의 수수료를 약속합니다.</p>
+                    </div>
+                    <div class="feature-card bg-gray-100 p-6 rounded-lg shadow-sm transition-all duration-300">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">⏰ 자유로운 근무</h3>
+                        <p class="text-gray-700">원하는 시간에 원하는 만큼! 라이프스타일에 맞춰 자유롭게 일하세요.</p>
+                    </div>
+                    <div class="feature-card bg-gray-100 p-6 rounded-lg shadow-sm transition-all duration-300">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">📈 안정적인 콜</h3>
+                        <p class="text-gray-700">김해 전 지역을 아우르는 배차 시스템으로 기복 없는 수입을 보장합니다.</p>
+                    </div>
+                    <div class="feature-card bg-gray-100 p-6 rounded-lg shadow-sm transition-all duration-300">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">🛡️ 안전 보험 지원</h3>
+                        <p class="text-gray-700">유상운송보험, 시간제 보험 등 라이더님의 안전을 위한 보험을 지원합니다.</p>
+                    </div>
+                    <div class="feature-card bg-gray-100 p-6 rounded-lg shadow-sm transition-all duration-300">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">🎁 지인 추천 프로모션</h3>
+                        <p class="text-gray-700">친구 추천하고 최대 10만원의 보너스 혜택까지 받아가세요.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Income Calculator Section -->
+            <section class="bg-blue-50 p-6 md:p-10 rounded-xl mb-16">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">나의 예상 수입은?</h2>
+                <p class="text-center text-gray-600 mb-10">슬라이드를 조절하여 예상 월 수입을 확인해보세요!</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <!-- Controls -->
+                    <div class="space-y-6">
+                        <div>
+                            <label for="hoursPerDay" class="text-lg font-medium text-gray-700">하루 근무 시간</label>
+                            <div class="flex items-center gap-4 mt-2">
+                                <input type="range" id="hoursPerDay" min="1" max="12" value="8" class="w-full h-2 slider-track rounded-lg appearance-none cursor-pointer">
+                                <span id="hoursValue" class="text-xl font-bold text-blue-900 w-12 text-center">8시간</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="daysPerWeek" class="text-lg font-medium text-gray-700">주간 근무 일수</label>
+                            <div class="flex items-center gap-4 mt-2">
+                                <input type="range" id="daysPerWeek" min="1" max="7" value="5" class="w-full h-2 slider-track rounded-lg appearance-none cursor-pointer">
+                                <span id="daysValue" class="text-xl font-bold text-blue-900 w-12 text-center">5일</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg text-center shadow-md">
+                            <p class="text-gray-600 text-lg">예상 월 수입</p>
+                            <p id="monthlyIncome" class="text-4xl font-black text-blue-900 mt-1">3,200,000원</p>
+                        </div>
+                    </div>
+                    <!-- Chart -->
+                    <div class="chart-container w-full h-80 max-w-md mx-auto">
+                        <canvas id="incomeChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Promotion Section -->
+            <section class="text-center mb-16">
+                 <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">친구와 함께, 혜택도 함께!</h2>
+                 <p class="text-center text-gray-600 mb-6">지금 지인을 소개하고 특별 보너스를 받으세요.</p>
+                <div class="max-w-md mx-auto bg-yellow-100 border-2 border-yellow-300 rounded-lg p-6">
+                    <p class="text-xl font-bold text-yellow-900">전업기사 소개 시 <span class="text-2xl">10만원</span></p>
+                    <p class="my-2 text-gray-700 font-bold text-2xl">+</p>
+                    <p class="text-xl font-bold text-yellow-900">부업기사 소개 시 <span class="text-2xl">5만원</span></p>
+                    <p class="text-sm text-gray-600 mt-4">(내부 규정 충족 시 지급)</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- CTA Section -->
+        <footer class="bg-blue-900 text-white text-center py-12 px-6">
+            <h2 class="text-3xl font-bold mb-4">망설일 이유가 없습니다.</h2>
+            <p class="text-lg mb-8 max-w-xl mx-auto">최고의 기회는 가장 먼저 잡는 사람의 것입니다. 지금 바로 전화하여 새로운 미래를 시작하세요!</p>
+            <a href="tel:010-2878-8073" class="inline-block bg-yellow-400 text-blue-900 font-bold text-xl py-4 px-10 rounded-full transition-transform duration-300 hover:scale-105 shadow-lg">
+                📞 지금 바로 전화 지원
+            </a>
+            <p class="mt-8 text-blue-200">문의: 010-2878-8073 (채용 담당자)</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hoursSlider = document.getElementById('hoursPerDay');
+            const daysSlider = document.getElementById('daysPerWeek');
+            const hoursValueSpan = document.getElementById('hoursValue');
+            const daysValueSpan = document.getElementById('daysValue');
+            const monthlyIncomeSpan = document.getElementById('monthlyIncome');
+            
+            const HOURLY_RATE = 20000; // 시간당 평균 수입 (예시)
+
+            const ctx = document.getElementById('incomeChart').getContext('2d');
+            let incomeChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['월', '화', '수', '목', '금', '토', '일'],
+                    datasets: [{
+                        label: '일일 예상 수입 (원)',
+                        backgroundColor: '#fcd34d',
+                        borderColor: '#fbbf24',
+                        borderRadius: 6,
+                        borderWidth: 2,
+                        data: []
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('ko-KR').format(context.parsed.y) + '원';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return new Intl.NumberFormat('ko-KR').format(value);
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            function updateCalculator() {
+                const hours = parseInt(hoursSlider.value);
+                const days = parseInt(daysSlider.value);
+
+                hoursValueSpan.textContent = `${hours}시간`;
+                daysValueSpan.textContent = `${days}일`;
+
+                const dailyIncome = hours * HOURLY_RATE;
+                const weeklyIncome = dailyIncome * days;
+                const monthlyIncome = weeklyIncome * 4;
+
+                monthlyIncomeSpan.textContent = `${monthlyIncome.toLocaleString('ko-KR')}원`;
+
+                const chartData = Array(7).fill(0);
+                for (let i = 0; i < days; i++) {
+                    chartData[i] = dailyIncome;
+                }
+                
+                incomeChart.data.datasets[0].data = chartData;
+                incomeChart.update();
+            }
+
+            hoursSlider.addEventListener('input', updateCalculator);
+            daysSlider.addEventListener('input', updateCalculator);
+            
+            updateCalculator();
+        });
+    </script>
+</body>
+</html>
